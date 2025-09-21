@@ -1,41 +1,47 @@
-[nix-shell:~/nixos-config]$ nixos-generate-config --no-filesystems --root /mnt --dir .
-writing /home/nixos/nixos-config/hardware-configuration.nix...
-warning: not overwriting existing /home/nixos/nixos-config/configuration.nix
+[nix-shell:~/nixos-config]$ git add .
 
-[nix-shell:~/nixos-config]$ mv hardware-configuration.nix hosts/desktop/
+[nix-shell:~/nixos-config]$ git config --global user.email bohlenhayden@gmail.com
 
-[nix-shell:~/nixos-config]$ nix-shell -p mkpasswd --run "mkpasswd -m sha-512"
-Password: 
-$6$g/OrnhCxwGMCBMYD$Xch2yusAyYKvAih6vk9AYE7GeeDGyaoc.J1s59TQ9JQA1PufdXRYtQ1l3UK9MsaF7oVFwqQKQyXov4oFb2xrH0
+[nix-shell:~/nixos-config]$ git config --global user.name hbohlen
 
-[nix-shell:~/nixos-config]$ sudo nixos-install --flake ./#nixos-desktop
-warning: Git tree '/home/nixos/nixos-config' is dirty
-copying channel...
-building the flake in git+file:///home/nixos/nixos-config...
-warning: Git tree '/home/nixos/nixos-config' is dirty
-error: flake 'git+file:///home/nixos/nixos-config' does not provide attribute 'packages.x86_64-linux.nixosConfigurations."nixos-desktop".config.system.build.toplevel', 'legacyPackages.x86_64-linux.nixosConfigurations."nixos-desktop".config.system.build.toplevel' or 'nixosConfigurations."nixos-desktop".config.system.build.toplevel'
-       Did you mean nix-desktop?
+[nix-shell:~/nixos-config]$ git commit -m "Add generated hardware configuration and password"
+[main 2a70cff] Add generated hardware configuration and password
+ 5 files changed, 251 insertions(+), 8 deletions(-)
+ create mode 100644 configuration.nix
+ create mode 100644 flake.lock
+ create mode 100644 hosts/desktop/hardware-configuration.nix
 
 [nix-shell:~/nixos-config]$ sudo nixos-install --flake ./#nix-desktop
-warning: Git tree '/home/nixos/nixos-config' is dirty
 copying channel...
-building the flake in git+file:///home/nixos/nixos-config...
-warning: Git tree '/home/nixos/nixos-config' is dirty
+building the flake in git+file:///home/nixos/nixos-config?ref=refs/heads/main&rev=2a70cff99ebbc3f3b5e3edf38f5e2fe885073a29...
 error:
-       … while calling the 'seq' builtin
-         at /mnt/nix/store/081zspnjiwbq85jqhx89gkk2nbyrfg3y-source/lib/modules.nix:361:18:
-          360|         options = checked options;
-          361|         config = checked (removeAttrs config [ "_module" ]);
-             |                  ^
-          362|         _module = checked (config._module);
+       … while calling the 'head' builtin
+         at /mnt/nix/store/081zspnjiwbq85jqhx89gkk2nbyrfg3y-source/lib/attrsets.nix:1701:13:
+         1700|           if length values == 1 || pred here (elemAt values 1) (head values) then
+         1701|             head values
+             |             ^
+         1702|           else
 
-       … while evaluating a branch condition
-         at /mnt/nix/store/081zspnjiwbq85jqhx89gkk2nbyrfg3y-source/lib/modules.nix:297:9:
-          296|       checkUnmatched =
-          297|         if config._module.check && config._module.freeformType == null && merged.unmatchedDefns != [ ] then
-             |         ^
-          298|           let
+       … while evaluating the attribute 'value'
+         at /mnt/nix/store/081zspnjiwbq85jqhx89gkk2nbyrfg3y-source/lib/modules.nix:1118:7:
+         1117|     // {
+         1118|       value = addErrorContext "while evaluating the option `${showOption loc}':" value;
+             |       ^
+         1119|       inherit (res.defsFinal') highestPrio;
+
+       … while evaluating the option `system.build.toplevel':
+
+       … while evaluating definitions from `/nix/store/081zspnjiwbq85jqhx89gkk2nbyrfg3y-source/nixos/modules/system/activation/top-level.nix':
+
+       … while evaluating the option `assertions':
+
+       … while evaluating definitions from `/nix/store/y0qiyjca2r6qpiw6w6p62x3w9v81xkic-source/nixos/common.nix':
+
+       … while evaluating the option `home-manager.users':
+
+       … while evaluating definitions from `/nix/store/081zspnjiwbq85jqhx89gkk2nbyrfg3y-source/flake.nix':
 
        (stack trace truncated; use '--show-trace' to show the full, detailed trace)
 
-       error: path '/mnt/nix/store/k96j16szfhfs8b403aybmgrndmmxh721-source/hosts/desktop/hardware-configuration.nix' does not exist
+       error: path '/mnt/nix/store/hfb3jy5ww6ss7z43ss6vsiyxl8gwnfv0-source/home/hbohlen' does not exist
+

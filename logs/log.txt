@@ -1,23 +1,20 @@
-[nix-shell:~/nixos-config]$ nix-shell -p mkpasswd --run "passwd hbohlen"
-passwd: user 'hbohlen' does not exist
+[nix-shell:~/nixos-config]$ nixos-generate-config --no-filesystems --root /mnt --dir .
+writing /home/nixos/nixos-config/hardware-configuration.nix...
+warning: not overwriting existing /home/nixos/nixos-config/configuration.nix
 
-[nix-shell:~/nixos-config]$ nixos-install --flake ./#nix-desktop
+[nix-shell:~/nixos-config]$ mv hardware-configuration.nix hosts/desktop/
+
+[nix-shell:~/nixos-config]$ nix-shell -p mkpasswd --run "mkpasswd -m sha-512"
+Password: 
+$6$g/OrnhCxwGMCBMYD$Xch2yusAyYKvAih6vk9AYE7GeeDGyaoc.J1s59TQ9JQA1PufdXRYtQ1l3UK9MsaF7oVFwqQKQyXov4oFb2xrH0
+
+[nix-shell:~/nixos-config]$ sudo nixos-install --flake ./#nixos-desktop
 warning: Git tree '/home/nixos/nixos-config' is dirty
-warning: creating lock file '"/home/nixos/nixos-config/flake.lock"': 
-• Added input 'disko':
-    'github:nix-community/disko/67ff9807dd148e704baadbd4fd783b54282ca627?narHash=sha256-IGmaEf3Do8o5Cwp1kXBN1wQmZwQN3NLfq5t4nHtVtcU%3D' (2025-09-19)
-• Added input 'disko/nixpkgs':
-    follows 'nixpkgs'
-• Added input 'home-manager':
-    'github:nix-community/home-manager/edc7468e12be92e926847cb02418e649b02b59dd?narHash=sha256-BLtD%2B6qWz7fQjPk2wpwyXQLGI0E30Ikgf2ppn2nVadI%3D' (2025-09-20)
-• Added input 'home-manager/nixpkgs':
-    follows 'nixpkgs'
-• Added input 'impermanence':
-    'github:nix-community/impermanence/4b3e914cdf97a5b536a889e939fb2fd2b043a170?narHash=sha256-LJggUHbpyeDvNagTUrdhe/pRVp4pnS6wVKALS782gRI%3D' (2025-01-25)
-• Added input 'nixpkgs':
-    'github:NixOS/nixpkgs/8eaee110344796db060382e15d3af0a9fc396e0e?narHash=sha256-iCGWf/LTy%2BaY0zFu8q12lK8KuZp7yvdhStehhyX1v8w%3D' (2025-09-19)
+copying channel...
+building the flake in git+file:///home/nixos/nixos-config...
 warning: Git tree '/home/nixos/nixos-config' is dirty
-mktemp: failed to create directory via template ‘/mnt/tmp.XXXXXXXXXX’: Permission denied
+error: flake 'git+file:///home/nixos/nixos-config' does not provide attribute 'packages.x86_64-linux.nixosConfigurations."nixos-desktop".config.system.build.toplevel', 'legacyPackages.x86_64-linux.nixosConfigurations."nixos-desktop".config.system.build.toplevel' or 'nixosConfigurations."nixos-desktop".config.system.build.toplevel'
+       Did you mean nix-desktop?
 
 [nix-shell:~/nixos-config]$ sudo nixos-install --flake ./#nix-desktop
 warning: Git tree '/home/nixos/nixos-config' is dirty

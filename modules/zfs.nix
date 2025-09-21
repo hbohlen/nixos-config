@@ -1,22 +1,28 @@
 # in modules/zfs.nix
-{ ... }:
+{ inputs, ... }:
 
 {
+  # This line is the fix. It imports the official Disko module,
+  # which makes the 'disko.devices' option available.
+  imports = [
+    inputs.disko.nixosModules.disko
+  ];
+
   disko.devices = {
     disk = {
       main = {
         type = "disk";
-        device = "/dev/nvme1n1"; # Target device updated
+        device = "/dev/nvme1n1";
         content = {
           type = "gpt";
           partitions = {
             boot = {
               size = "1M";
-              type = "EF02"; # BIOS boot partition
+              type = "EF02";
             };
             ESP = {
               size = "512M";
-              type = "EF00"; # EFI System Partition
+              type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";

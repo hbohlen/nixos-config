@@ -16,23 +16,25 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, disko, impermanence }: {
+  # This is the line that has been changed
+  outputs = { self, ... }@inputs: {
     nixosConfigurations = {
-      "nix-desktop" = nixpkgs.lib.nixosSystem {
+      "nix-desktop" = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        # Now 'inputs' is correctly defined and can be passed down
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/desktop
           ./modules/zfs.nix
           ./modules/impermanence.nix
-          home-manager.nixosModules.home-manager {
+          inputs.home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.hbohlen = import ./home/hbohlen;
           }
         ];
       };
-      # We will define 'nix-laptop' and 'nix-server' later
     };
   };
 }
+

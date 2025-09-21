@@ -43,6 +43,11 @@ error:
 
        (stack trace truncated; use '--show-trace' to show the full, detailed trace)
 
-       error: syntax error, unexpected end of file
-       at /nix/store/5saddcr4yxz1axdqw88qshs10l6cx58w-source/hosts/desktop/hardware-configuration.nix:1:1:
-
+       error: The option `disko' does not exist. Definition values:
+       - In `/nix/store/qmpgzmyg4zrawp459plnd8w8pky1rqqw-source/modules/zfs.nix':
+           {
+             devices = {
+               disk = {
+                 main = {
+                   content = {
+           ...

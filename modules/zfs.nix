@@ -1,12 +1,11 @@
 # in modules/zfs.nix
-{ inputs, ... }:
+{ inputs, pkgs, ... }: # It's good practice to list pkgs here too
 
 {
-  # This line is the fix. It imports the official Disko module,
-  # which makes the 'disko.devices' option available.
-  imports = [
-    inputs.disko.nixosModules.disko
-  ];
+  # REMOVE THE IMPORTS SECTION FROM THIS FILE
+  # imports = [
+  #   inputs.disko.nixosModules.disko
+  # ];
 
   disko.devices = {
     disk = {
@@ -53,16 +52,12 @@
           "com.sun:auto-snapshot" = "false";
         };
         datasets = {
-          "root" = { type = "zfs_fs"; mountpoint = "/"; };
           "nix" = { type = "zfs_fs"; mountpoint = "/nix"; };
           "home" = { type = "zfs_fs"; mountpoint = "/home"; };
-          "persist" = { type = "zfs_fs"; mountpoint = "/persist"; };
-          "var_log" = {
+          "persist" = {
             type = "zfs_fs";
-            mountpoint = "/var/log";
-            options."com.sun:auto-snapshot" = "false";
+            mountpoint = "/persist";
           };
-          "containers" = { type = "zfs_fs"; mountpoint = "/var/lib/containers"; };
         };
       };
     };

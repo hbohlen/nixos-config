@@ -13,7 +13,7 @@ nix-shell -p nixos-install-tools git disko
 Then, clone your configuration repository from GitHub.
 
 ```bash
-git clone https://your-git-repo-url/nixos-config.git
+git clone https://github.com/hbohlen/nixos-config.git
 cd nixos-config
 ```
 

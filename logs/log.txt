@@ -1,19 +1,9 @@
-[nix-shell:~/nixos-config]$ git add .
-
-[nix-shell:~/nixos-config]$ git config --global user.email bohlenhayden@gmail.com
-
-[nix-shell:~/nixos-config]$ git config --global user.name hbohlen
-
-[nix-shell:~/nixos-config]$ git commit -m "Add generated hardware configuration and password"
-[main 2a70cff] Add generated hardware configuration and password
- 5 files changed, 251 insertions(+), 8 deletions(-)
- create mode 100644 configuration.nix
- create mode 100644 flake.lock
- create mode 100644 hosts/desktop/hardware-configuration.nix
+[nix-shell:~/nixos-config]$ nix flake update
+error: experimental Nix feature 'nix-command' is disabled; add '--extra-experimental-features nix-command' to enable it
 
 [nix-shell:~/nixos-config]$ sudo nixos-install --flake ./#nix-desktop
 copying channel...
-building the flake in git+file:///home/nixos/nixos-config?ref=refs/heads/main&rev=2a70cff99ebbc3f3b5e3edf38f5e2fe885073a29...
+building the flake in git+file:///home/nixos/nixos-config?ref=refs/heads/main&rev=0ebfdfacca1e19252edb16719ea93c91e22aaf71...
 error:
        … while calling the 'head' builtin
          at /mnt/nix/store/081zspnjiwbq85jqhx89gkk2nbyrfg3y-source/lib/attrsets.nix:1701:13:
@@ -43,5 +33,4 @@ error:
 
        (stack trace truncated; use '--show-trace' to show the full, detailed trace)
 
-       error: path '/mnt/nix/store/hfb3jy5ww6ss7z43ss6vsiyxl8gwnfv0-source/home/hbohlen' does not exist
-
+       error: opening file '/mnt/nix/store/xaag0y9q3r4slf46d98921zx794jpcbw-source/home/hbohlen/default.nix': No such file or directory

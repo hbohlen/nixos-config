@@ -1,2 +1,59 @@
-[nix-shell:~/nixos-config]$ sudo nix --extra-experimental-features nix-command flake update
-error: experimental Nix feature 'flakes' is disabled; add '--extra-experimental-features flakes' to enable it
+[nix-shell:~/nixos-config]$ sudo nixos-install --flake ./#nix-desktop
+copying channel...
+building the flake in git+file:///home/nixos/nixos-config?ref=refs/heads/main&rev=cc57266755ccf2a73a47d2b764d26549fe3b6906...
+error:
+       … while calling the 'head' builtin
+         at /mnt/nix/store/081zspnjiwbq85jqhx89gkk2nbyrfg3y-source/lib/attrsets.nix:1701:13:
+         1700|           if length values == 1 || pred here (elemAt values 1) (head values) then
+         1701|             head values
+             |             ^
+         1702|           else
+
+       … while evaluating the attribute 'value'
+         at /mnt/nix/store/081zspnjiwbq85jqhx89gkk2nbyrfg3y-source/lib/modules.nix:1118:7:
+         1117|     // {
+         1118|       value = addErrorContext "while evaluating the option `${showOption loc}':" value;
+             |       ^
+         1119|       inherit (res.defsFinal') highestPrio;
+
+       … while evaluating the option `system.build.toplevel':
+
+       … while evaluating definitions from `/nix/store/081zspnjiwbq85jqhx89gkk2nbyrfg3y-source/nixos/modules/system/activation/top-level.nix':
+
+       … while evaluating the option `assertions':
+
+       … while evaluating definitions from `/nix/store/y0qiyjca2r6qpiw6w6p62x3w9v81xkic-source/nixos/common.nix':
+
+       … while evaluating the option `home-manager.users.hbohlen.assertions':
+
+       … while evaluating definitions from `/nix/store/y0qiyjca2r6qpiw6w6p62x3w9v81xkic-source/modules/systemd.nix':
+
+       … while evaluating the option `home-manager.users.hbohlen.home.username':
+
+       … while evaluating definitions from `/nix/store/y0qiyjca2r6qpiw6w6p62x3w9v81xkic-source/nixos/common.nix':
+
+       … while evaluating the option `users.users':
+
+       … while evaluating definitions from `/nix/store/081zspnjiwbq85jqhx89gkk2nbyrfg3y-source/nixos/modules/services/networking/rpcbind.nix':
+
+       … while evaluating the option `services.rpcbind.enable':
+
+       … while evaluating definitions from `/nix/store/081zspnjiwbq85jqhx89gkk2nbyrfg3y-source/nixos/modules/tasks/filesystems/nfs.nix':
+
+       … while evaluating the option `boot.supportedFilesystems':
+
+       … while evaluating definitions from `/nix/store/081zspnjiwbq85jqhx89gkk2nbyrfg3y-source/nixos/modules/tasks/filesystems.nix':
+
+       … while evaluating the option `fileSystems."/".device':
+
+       … while evaluating definitions from `/nix/store/081zspnjiwbq85jqhx89gkk2nbyrfg3y-source/nixos/modules/tasks/filesystems.nix':
+
+       … while evaluating the option `fileSystems."/".fsType':
+
+       (stack trace truncated; use '--show-trace' to show the full, detailed trace)
+
+       error: The option `fileSystems."/".fsType' has conflicting definition values:
+       - In `/nix/store/9kxv2djb54bqzky30rnr177mxr4addlz-source/modules/impermanence.nix': "tmpfs"
+       - In `/nix/store/4xd5v91hsmakfq53qbbdph5fis62zbnp-source/module.nix': "zfs"
+       Use `lib.mkForce value` or `lib.mkDefault value` to change the priority on any of these definitions.
+

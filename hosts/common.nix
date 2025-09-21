@@ -24,7 +24,7 @@
     description = "Your Name";
     extraGroups = [ "wheel" "networkmanager" ];
     # Replace this with your actual password hash
-    hashedPassword = "$6$your-password-hash-here";
+    initialPassword = "1321";
   };
 
   # List system-wide packages (available to all users)

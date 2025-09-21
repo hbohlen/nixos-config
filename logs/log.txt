@@ -1,0 +1,48 @@
+[nix-shell:~/nixos-config]$ disko --mode disko --flake ./#nix-desktop
+disko version 1.12.0
+warning: not writing modified lock file of flake 'path:/home/nixos/nixos-config':
+• Added input 'disko':
+    'github:nix-community/disko/67ff9807dd148e704baadbd4fd783b54282ca627?narHash=sha256-IGmaEf3Do8o5Cwp1kXBN1wQmZwQN3NLfq5t4nHtVtcU%3D' (2025-09-19)
+• Added input 'disko/nixpkgs':
+    follows 'nixpkgs'
+• Added input 'home-manager':
+    'github:nix-community/home-manager/edc7468e12be92e926847cb02418e649b02b59dd?narHash=sha256-BLtD%2B6qWz7fQjPk2wpwyXQLGI0E30Ikgf2ppn2nVadI%3D' (2025-09-20)
+• Added input 'home-manager/nixpkgs':
+    follows 'nixpkgs'
+• Added input 'impermanence':
+    'github:nix-community/impermanence/4b3e914cdf97a5b536a889e939fb2fd2b043a170?narHash=sha256-LJggUHbpyeDvNagTUrdhe/pRVp4pnS6wVKALS782gRI%3D' (2025-01-25)
+• Added input 'nixpkgs':
+    'github:NixOS/nixpkgs/8eaee110344796db060382e15d3af0a9fc396e0e?narHash=sha256-iCGWf/LTy%2BaY0zFu8q12lK8KuZp7yvdhStehhyX1v8w%3D' (2025-09-19)
+warning: not writing modified lock file of flake 'path:/home/nixos/nixos-config':
+• Added input 'disko':
+    'github:nix-community/disko/67ff9807dd148e704baadbd4fd783b54282ca627?narHash=sha256-IGmaEf3Do8o5Cwp1kXBN1wQmZwQN3NLfq5t4nHtVtcU%3D' (2025-09-19)
+• Added input 'disko/nixpkgs':
+    follows 'nixpkgs'
+• Added input 'home-manager':
+    'github:nix-community/home-manager/edc7468e12be92e926847cb02418e649b02b59dd?narHash=sha256-BLtD%2B6qWz7fQjPk2wpwyXQLGI0E30Ikgf2ppn2nVadI%3D' (2025-09-20)
+• Added input 'home-manager/nixpkgs':
+    follows 'nixpkgs'
+• Added input 'impermanence':
+    'github:nix-community/impermanence/4b3e914cdf97a5b536a889e939fb2fd2b043a170?narHash=sha256-LJggUHbpyeDvNagTUrdhe/pRVp4pnS6wVKALS782gRI%3D' (2025-01-25)
+• Added input 'nixpkgs':
+    'github:NixOS/nixpkgs/8eaee110344796db060382e15d3af0a9fc396e0e?narHash=sha256-iCGWf/LTy%2BaY0zFu8q12lK8KuZp7yvdhStehhyX1v8w%3D' (2025-09-19)
+error:
+       … while evaluating a branch condition
+         at /nix/store/fggg14qp0zy6r4h0hvvk53kzc6p4890m-disko-1.12.0/share/disko/cli.nix:108:10:
+          107|       diskoEval
+          108|     else if hasDiskoModuleFlake then
+             |          ^
+          109|       (builtins.getFlake flake).nixosConfigurations.${flakeAttr}.config.system.build.${diskoAttr}
+
+       … in the right operand of the OR (||) operator
+         at /nix/store/7xymsv3m83rzifjrk6f4a1a2pv7wlpjl-nixos-25.05.810061.d2ed99647a4b/nixos/lib/attrsets.nix:168:11:
+          167|           n == lenAttrPath
+          168|           || (
+             |           ^
+          169|             let
+
+       (stack trace truncated; use '--show-trace' to show the full, detailed trace)
+
+       error: syntax error, unexpected end of file
+       at /nix/store/5saddcr4yxz1axdqw88qshs10l6cx58w-source/hosts/desktop/hardware-configuration.nix:1:1:
+

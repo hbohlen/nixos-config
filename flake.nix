@@ -16,25 +16,37 @@
     };
   };
 
-  # This is the line that has been changed
-  outputs = { self, ... }@inputs: {
-    nixosConfigurations = {
-      "nix-desktop" = inputs.nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        # Now 'inputs' is correctly defined and can be passed down
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./hosts/desktop
-          ./modules/zfs.nix
-          ./modules/impermanence.nix
-          inputs.home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.hbohlen = import ./home/hbohlen;
-          }
-        ];
+  outputs = { self, ... }@inputs:
+    let
+      # Define the system architecture once
+      system = "x86_64-linux";
+      # Create a pkgs set for the specified system
+      pkgs = inputs.nixpkgs.legacyPackages.${system};
+    in
+    {
+      diskoConfigurations = {
+        "nixos-desktop" = {
+          imports = [ ./modules/zfs.nix ];
+          # This is the fix: pass pkgs into the module
+          _module.args = { inherit inputs pkgs; };
+        };
+      };
+
+      nixosConfigurations = {
+        "nixos-desktop" = inputs.nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/desktop
+            ./modules/zfs.nix
+            ./modules/impermanence.nix
+            inputs.home-manager.nixosModules.home-manager {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.hbohlen = import ./home/hbohlen/default.nix;
+            }
+          ];
+        };
       };
     };
-  };
 }
-

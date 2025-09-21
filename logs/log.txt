@@ -1,19 +1,30 @@
-evaluation warning: system.stateVersion is not set, defaulting to 25.11. Read why this matters on https://nixos.org/manual/nixos/stable/options.html#opt-system.stateVersion.
-evaluation warning: The option `services.xserver.desktopManager.gnome.enable' defined in `/nix/store/xzwfi2qqsfcc5f533szhilxgk9wsidiv-source/hosts/desktop' has been renamed to `services.desktopManager.gnome.enable'.
-evaluation warning: The option `services.xserver.displayManager.gdm.enable' defined in `/nix/store/xzwfi2qqsfcc5f533szhilxgk9wsidiv-source/hosts/desktop' has been renamed to `services.displayManager.gdm.enable'.
-evaluation warning: The option `hardware.pulseaudio' defined in `/nix/store/xzwfi2qqsfcc5f533szhilxgk9wsidiv-source/hosts/desktop' has been renamed to `services.pulseaudio'.
-installing the boot loader...
-Warning: Source directory '/persist' does not exist; it will be created for you with the following permissions: owner: 'root:root', mode: '0755'.
-Warning: Source directory '/persist/var' does not exist; it will be created for you with the following permissions: owner: 'root:root', mode: '0755'.
-Warning: Source directory '/persist/var/lib' does not exist; it will be created for you with the following permissions: owner: 'root:root', mode: '0755'.
-Warning: Source directory '/persist/etc' does not exist; it will be created for you with the following permissions: owner: 'root:root', mode: '0755'.
-Warning: Source directory '/persist/var/log' does not exist; it will be created for you with the following permissions: owner: 'root:root', mode: '0755'.
-Warning: Source directory '/persist/var/lib/nixos' does not exist; it will be created for you with the following permissions: owner: 'root:root', mode: '0755'.
-Warning: Source directory '/persist/var/lib/systemd' does not exist; it will be created for you with the following permissions: owner: 'root:root', mode: '0755'.
-Warning: Source directory '/persist/etc/nixos' does not exist; it will be created for you with the following permissions: owner: 'root:root', mode: '0755'.
-Warning: Source directory '/persist/var/lib/containers' does not exist; it will be created for you with the following permissions: owner: 'root:root', mode: '0755'.
-setting up /etc...
-Creating initial /etc/machine-id
-updating GRUB 2 menu...
-Failed to get blkid info (returned 512) for  on  at /nix/store/v0qc1zkfi5qq5v5h7z5rr9z12478pim0-install-grub.pl line 213.
-Failed to install bootloader
+[nix-shell:~/nixos-config]$ disko --mode disko --flake ./#nixos-desktop
+disko version 1.12.0
+evaluation warning: the diskoScript output is deprecated and will be removed, please open an issue if you're using it!
+error:
+       … while calling the 'warn' builtin
+         at /nix/store/fggg14qp0zy6r4h0hvvk53kzc6p4890m-disko-1.12.0/share/disko/default.nix:93:5:
+           92|     cfg: pkgs:
+           93|     warnDeprecated "diskoScript"
+             |     ^
+           94|       ((eval cfg).config.disko.devices._scripts { inherit pkgs checked; }).diskoScript;
+
+       … while evaluating the attribute 'value'
+         at /nix/store/7xymsv3m83rzifjrk6f4a1a2pv7wlpjl-nixos-25.05.810061.d2ed99647a4b/nixos/lib/modules.nix:1083:7:
+         1082|     // {
+         1083|       value = addErrorContext "while evaluating the option `${showOption loc}':" value;
+             |       ^
+         1084|       inherit (res.defsFinal') highestPrio;
+
+       … while evaluating the option `disko.devices':
+
+       … while evaluating definitions from `<unknown-file>':
+
+       (stack trace truncated; use '--show-trace' to show the full, detailed trace)
+
+       error: attribute 'disko' missing
+       at /nix/store/fggg14qp0zy6r4h0hvvk53kzc6p4890m-disko-1.12.0/share/disko/default.nix:13:51:
+           12|         # _file = toString input;
+           13|         imports = lib.singleton { disko.devices = cfg.disko.devices; };
+             |                                                   ^
+           14|         options = {
